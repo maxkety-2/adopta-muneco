@@ -1,455 +1,775 @@
 <!DOCTYPE html>
+
 <html lang="es">
 
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta charset="UTF-8">
+<title>Adopta un Muñeco 🧸</title>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
 
-    <title>Adopta un Muñeco</title>
+/* =========================
+   ESTILO GENERAL
+========================= */
 
+* {
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
 
-    <style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f7f8ff;
+    color: #26345f;
+}
 
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #f0f4ff;
-            color: #243b80;
-            text-align: center;
-        }
 
+/* =========================
+   BARRA DE NAVEGACIÓN
+========================= */
 
-        header {
-            background: #243b80;
-            color: white;
-            padding: 50px 20px;
-        }
+nav {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 
-        header h1 {
-            font-size: 45px;
-            margin: 10px;
-        }
+    padding: 15px 8%;
 
+    background: rgba(36, 59, 128, 0.95);
+    backdrop-filter: blur(10px);
 
-        header p {
-            font-size: 20px;
-        }
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+}
 
+.logo {
+    color: white;
+    font-size: 22px;
+    font-weight: bold;
+}
 
-        .contenedor {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            flex-wrap: wrap;
-            padding: 40px 20px;
-        }
+nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: 25px;
+    font-weight: bold;
+}
 
+nav a:hover {
+    color: #ffd633;
+}
 
-        .muneco {
-            background: white;
-            width: 320px;
-            padding: 25px;
-            border-radius: 20px;
 
-            box-shadow:
-                0 5px 20px rgba(0,0,0,0.15);
-        }
+/* =========================
+   PORTADA
+========================= */
 
+header {
+    min-height: 520px;
 
-        .muneco img {
-            width: 100%;
-            height: 350px;
-            object-fit: contain;
-        }
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
+    text-align: center;
 
-        .muneco h2 {
-            font-size: 30px;
-        }
+    padding: 60px 20px;
 
+    background:
+        radial-gradient(circle at top left, #7189e8, transparent 35%),
+        radial-gradient(circle at bottom right, #ff9acb, transparent 35%),
+        linear-gradient(135deg, #243b80, #4b63c7);
 
-        .muneco p {
-            font-size: 17px;
-            line-height: 1.5;
-        }
+    color: white;
+}
 
+header .emoji {
+    font-size: 80px;
+    animation: flotar 3s ease-in-out infinite;
+}
 
-        button {
-            background: #ffd633;
-            border: none;
+header h1 {
+    font-size: clamp(40px, 7vw, 70px);
+    margin: 15px 0;
+}
 
-            padding: 14px 25px;
+header p {
+    font-size: 21px;
+    max-width: 650px;
+    line-height: 1.6;
+}
 
-            border-radius: 10px;
+.boton-portada {
+    margin-top: 25px;
 
-            font-size: 17px;
+    background: #ffd633;
+    color: #243b80;
 
-            cursor: pointer;
+    padding: 16px 30px;
 
-            font-weight: bold;
-        }
+    border-radius: 50px;
 
+    text-decoration: none;
 
-        button:hover {
-            background: #ffbf00;
-        }
+    font-size: 18px;
+    font-weight: bold;
 
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
 
-        #formulario {
-            display: none;
+    transition: 0.3s;
+}
 
-            background: white;
+.boton-portada:hover {
+    transform: translateY(-5px) scale(1.03);
+    background: #fff;
+}
 
-            max-width: 500px;
 
-            margin: 30px auto;
+/* =========================
+   SECCIÓN DE MUÑECOS
+========================= */
 
-            padding: 30px;
+.seccion-munecos {
+    padding: 80px 20px;
+    text-align: center;
+}
 
-            border-radius: 20px;
+.titulo-seccion {
+    font-size: 38px;
+    margin-bottom: 10px;
+}
 
-            box-shadow:
-                0 5px 20px rgba(0,0,0,0.15);
-        }
+.subtitulo {
+    color: #66729b;
+    font-size: 18px;
+    margin-bottom: 50px;
+}
 
 
-        input,
-        select {
+/* =========================
+   TARJETAS
+========================= */
 
-            width: 90%;
+.contenedor {
+    display: flex;
+    justify-content: center;
+    gap: 35px;
+    flex-wrap: wrap;
+}
 
-            padding: 12px;
+.muneco {
+    background: white;
 
-            margin: 8px;
+    width: 340px;
 
-            border: 1px solid #ccc;
+    padding: 25px;
 
-            border-radius: 8px;
+    border-radius: 28px;
 
-            font-size: 16px;
-        }
+    box-shadow: 0 12px 35px rgba(36,59,128,0.15);
 
+    overflow: hidden;
 
-        #certificado {
+    transition: 0.4s;
 
-            display: none;
+    border: 1px solid #edf0ff;
+}
 
-            background: #fff9d6;
+.muneco:hover {
+    transform: translateY(-12px);
 
-            max-width: 500px;
+    box-shadow: 0 20px 45px rgba(36,59,128,0.25);
+}
 
-            margin: 30px auto;
+.imagen-contenedor {
+    background: linear-gradient(135deg, #eef2ff, #fff0f7);
 
-            padding: 30px;
+    border-radius: 22px;
 
-            border-radius: 20px;
+    padding: 15px;
+}
 
-            border: 3px dashed #ffd633;
-        }
+.muneco img {
+    width: 100%;
+    height: 300px;
 
+    object-fit: contain;
 
-        footer {
+    transition: 0.4s;
+}
 
-            background: #243b80;
+.muneco:hover img {
+    transform: scale(1.08) rotate(2deg);
+}
 
-            color: white;
+.muneco h2 {
+    font-size: 30px;
+    margin: 20px 0 10px;
+}
 
-            padding: 25px;
+.muneco p {
+    font-size: 17px;
+    line-height: 1.6;
+    color: #68718f;
+}
 
-            margin-top: 40px;
-        }
 
+/* =========================
+   BOTONES
+========================= */
 
-        @media (max-width: 700px) {
+button {
+    background: linear-gradient(135deg, #ffd633, #ffb700);
 
-            header h1 {
-                font-size: 34px;
-            }
+    color: #26345f;
 
-            .muneco {
-                width: 85%;
-            }
+    border: none;
 
-        }
+    padding: 14px 25px;
 
-    </style>
+    border-radius: 50px;
+
+    font-size: 17px;
+
+    cursor: pointer;
+
+    font-weight: bold;
+
+    transition: 0.3s;
+
+    box-shadow: 0 7px 18px rgba(255,190,0,0.3);
+}
+
+button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(255,190,0,0.4);
+}
+
+
+/* =========================
+   FORMULARIO
+========================= */
+
+#formulario {
+    display: none;
+
+    background: white;
+
+    max-width: 600px;
+
+    margin: 30px auto 70px;
+
+    padding: 40px;
+
+    border-radius: 28px;
+
+    box-shadow: 0 15px 40px rgba(36,59,128,0.18);
+
+    text-align: center;
+}
+
+#formulario h2 {
+    font-size: 30px;
+}
+
+#formulario p {
+    color: #68718f;
+}
+
+input {
+    width: 90%;
+
+    padding: 15px;
+
+    margin: 10px;
+
+    border: 2px solid #e2e6f5;
+
+    border-radius: 12px;
+
+    font-size: 16px;
+
+    outline: none;
+
+    transition: 0.3s;
+}
+
+input:focus {
+    border-color: #667eea;
+
+    box-shadow: 0 0 0 4px rgba(102,126,234,0.1);
+}
+
+
+/* =========================
+   CERTIFICADO
+========================= */
+
+#certificado {
+    display: none;
+
+    max-width: 600px;
+
+    margin: 30px auto 70px;
+
+    padding: 45px;
+
+    border-radius: 28px;
+
+    background:
+        linear-gradient(135deg, #fffbea, #fff5c7);
+
+    border: 3px dashed #f4c400;
+
+    box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+
+    text-align: center;
+}
+
+#certificado h2 {
+    font-size: 32px;
+    color: #b78600;
+}
+
+#resultado {
+    font-size: 18px;
+    line-height: 1.7;
+}
+
+
+/* =========================
+   QR
+========================= */
+
+#qr {
+    text-align: center;
+
+    padding: 70px 20px;
+
+    background: #eef2ff;
+}
+
+#qr h2 {
+    font-size: 32px;
+}
+
+#qr p {
+    color: #68718f;
+    font-size: 17px;
+}
+
+#codigoQR {
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    margin: 30px auto;
+
+    background: white;
+
+    padding: 20px;
+
+    width: fit-content;
+
+    border-radius: 20px;
+
+    box-shadow: 0 10px 30px rgba(36,59,128,0.15);
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+    background: #17275c;
+
+    color: white;
+
+    padding: 35px 20px;
+
+    text-align: center;
+
+    line-height: 1.7;
+}
+
+
+/* =========================
+   ANIMACIÓN
+========================= */
+
+@keyframes flotar {
+
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-15px);
+    }
+
+}
+
+
+/* =========================
+   CELULARES
+========================= */
+
+@media (max-width: 700px) {
+
+    nav {
+        padding: 15px 20px;
+    }
+
+    nav a {
+        margin-left: 10px;
+        font-size: 14px;
+    }
+
+    header {
+        min-height: 500px;
+    }
+
+    header p {
+        font-size: 18px;
+    }
+
+    .seccion-munecos {
+        padding: 60px 15px;
+    }
+
+    .muneco {
+        width: 95%;
+        max-width: 350px;
+    }
+
+    #formulario,
+    #certificado {
+        width: 90%;
+        padding: 30px 20px;
+    }
+
+    input {
+        width: 100%;
+        margin: 8px 0;
+    }
+
+}
+
+</style>
 
 </head>
 
-
 <body>
 
+<!-- =========================
+     MENÚ
+========================= -->
 
-    <!-- PORTADA -->
+<nav>
 
-    <header>
+```
+<div class="logo">
+    🧸 Adopta un Muñeco
+</div>
 
-        <h1>🧸 ¡Adopta un Muñeco!</h1>
+<div>
+    <a href="#inicio">Inicio</a>
+    <a href="#munecos">Muñecos</a>
+    <a href="#qr">QR</a>
+</div>
+```
 
-        <p>
-            Encuentra un nuevo compañero
-            para tus aventuras.
-        </p>
+</nav>
 
-    </header>
+<!-- =========================
+     PORTADA
+========================= -->
 
+<header id="inicio">
 
+```
+<div class="emoji">
+    🧸
+</div>
 
-    <!-- MUÑECOS -->
+<h1>
+    ¡Adopta un Muñeco!
+</h1>
 
-    <section>
+<p>
+    Encuentra un nuevo compañero para tus aventuras,
+    crea recuerdos increíbles y dale un hogar lleno de cariño.
+</p>
 
-        <h2 style="font-size: 32px; margin-top: 40px;">
-            ❤️ Conoce a nuestros muñecos
-        </h2>
+<a href="#munecos" class="boton-portada">
+    ❤️ Conocer muñecos
+</a>
+```
 
+</header>
 
-        <div class="contenedor">
+<!-- =========================
+     MUÑECOS
+========================= -->
 
+<section id="munecos" class="seccion-munecos">
 
-            <!-- BLU -->
+```
+<h2 class="titulo-seccion">
+    🧸 Conoce a nuestros muñecos
+</h2>
 
-            <div class="muneco">
-
-                <img
-                    src="azul.png"
-                    alt="Blu, muñeco azul"
-                >
-
-                <h2>💙 Blu</h2>
-
-                <p>
-                    Un compañero divertido,
-                    aventurero y listo para
-                    acompañarte en cada momento.
-                </p>
-
-                <button
-                    onclick="mostrarFormulario('Blu 💙')"
-                >
-                    ❤️ Adoptar a Blu
-                </button>
-
-            </div>
-
+<p class="subtitulo">
+    Cada uno tiene una personalidad especial.
+    ¿Cuál será tu nuevo compañero?
+</p>
 
 
-            <!-- FLAMY -->
+<div class="contenedor">
 
-            <div class="muneco">
 
-                <img
-                    src="fuego.png"
-                    alt="Flamy, muñeco rojo y amarillo"
-                >
+    <!-- BLU -->
 
-                <h2>🔥 Flamy</h2>
+    <div class="muneco">
 
-                <p>
-                    Alegre, energético y
-                    lleno de personalidad.
-                    ¡Perfecto para nuevas aventuras!
-                </p>
+        <div class="imagen-contenedor">
 
-                <button
-                    onclick="mostrarFormulario('Flamy 🔥')"
-                >
-                    ❤️ Adoptar a Flamy
-                </button>
-
-            </div>
-
+            <img
+                src="azul.png"
+                alt="Blu, muñeco azul"
+            >
 
         </div>
 
-    </section>
-
-
-
-    <!-- FORMULARIO -->
-
-    <div id="formulario">
-
-        <h2>📝 Formulario de adopción</h2>
+        <h2>💙 Blu</h2>
 
         <p>
-            Completa los datos para registrar
-            a tu nuevo compañero.
+            Un compañero divertido, aventurero
+            y listo para acompañarte en cada momento.
         </p>
 
-
-        <input
-            type="text"
-            id="nombre"
-            placeholder="Tu nombre"
-        >
-
-
-        <input
-            type="text"
-            id="nombreMuneco"
-            placeholder="Nombre que tendrá tu muñeco"
-        >
-
-
-        <input
-            type="hidden"
-            id="tipo"
-        >
-
-
-        <br>
-
-
-        <button onclick="adoptar()">
-            🧸 Confirmar adopción
+        <button onclick="mostrarFormulario('Blu 💙')">
+            ❤️ Adoptar a Blu
         </button>
 
     </div>
 
 
+    <!-- FLAMY -->
 
-    <!-- CERTIFICADO -->
+    <div class="muneco">
 
-    <div id="certificado">
+        <div class="imagen-contenedor">
 
-        <h2>
-            🎉 ¡Adopción confirmada!
-        </h2>
+            <img
+                src="fuego.png"
+                alt="Flamy, muñeco rojo y amarillo"
+            >
 
-        <p id="resultado"></p>
+        </div>
+
+        <h2>🔥 Flamy</h2>
 
         <p>
-            ❤️ Gracias por darle un nuevo hogar.
+            Alegre, energético y lleno de personalidad.
+            ¡Perfecto para comenzar nuevas aventuras!
         </p>
+
+        <button onclick="mostrarFormulario('Flamy 🔥')">
+            ❤️ Adoptar a Flamy
+        </button>
 
     </div>
 
-<!-- CÓDIGO QR -->
-<style>
-    #qr {
-        text-align: center;
-        margin: 40px auto;
-        padding: 30px;
-    }
 
-    #codigoQR {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin: 25px auto;
-    }
-</style>
-<section id="qr">
-
-    <h2>📱 Escanea para adoptar</h2>
-
-    <p>
-        Escanea este código QR para visitar
-        nuestra página de adopción.
-    </p>
-
-    <div id="codigoQR"></div>
-
-    <p>
-        🧸 ¡Tu nuevo compañero te está esperando!
-    </p>
+</div>
+```
 
 </section>
 
-    <footer>
+<!-- =========================
+     FORMULARIO
+========================= -->
 
-        🐾 Adopta un compañero.
-        Comparte una aventura. ❤️
+<div id="formulario">
 
-    </footer>
+```
+<h2>📝 Formulario de adopción</h2>
+
+<p>
+    Completa los datos para registrar
+    a tu nuevo compañero.
+</p>
+
+<input
+    type="text"
+    id="nombre"
+    placeholder="👤 Tu nombre"
+>
+
+<input
+    type="text"
+    id="nombreMuneco"
+    placeholder="🧸 Nombre que tendrá tu muñeco"
+>
+
+<input
+    type="hidden"
+    id="tipo"
+>
+
+<br><br>
+
+<button onclick="adoptar()">
+    🧸 Confirmar adopción
+</button>
+```
+
+</div>
+
+<!-- =========================
+     CERTIFICADO
+========================= -->
+
+<div id="certificado">
+
+```
+<h2>
+    🎉 ¡Adopción confirmada!
+</h2>
+
+<p id="resultado"></p>
+
+<p>
+    ❤️ Gracias por darle un nuevo hogar.
+</p>
+```
+
+</div>
+
+<!-- =========================
+     QR
+========================= -->
+
+<section id="qr">
+
+```
+<h2>
+    📱 Escanea para adoptar
+</h2>
+
+<p>
+    Escanea este código QR para visitar
+    nuestra página de adopción.
+</p>
+
+<div id="codigoQR"></div>
+
+<p>
+    🧸 ¡Tu nuevo compañero te está esperando!
+</p>
+```
+
+</section>
+
+<!-- =========================
+     PIE DE PÁGINA
+========================= -->
+
+<footer>
+
+```
+🐾 <strong>Adopta un compañero.</strong><br>
+
+Comparte una aventura. ❤️<br><br>
+
+© 2026 Adopta un Muñeco
+```
+
+</footer>
+
+<!-- =========================
+     CÓDIGO QR
+========================= -->
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
-    <script>
+<script>
 
 
-        function mostrarFormulario(tipoMuneco) {
+function mostrarFormulario(tipoMuneco) {
 
-            document.getElementById("formulario")
-                .style.display = "block";
+    document.getElementById("formulario").style.display = "block";
 
+    document.getElementById("tipo").value = tipoMuneco;
 
-            document.getElementById("tipo")
-                .value = tipoMuneco;
+    document.getElementById("formulario").scrollIntoView({
+        behavior: "smooth"
+    });
 
-
-            document.getElementById("formulario")
-                .scrollIntoView({
-                    behavior: "smooth"
-                });
-
-        }
+}
 
 
+function adoptar() {
 
-        function adoptar() {
+    let nombre =
+        document.getElementById("nombre").value;
 
-            let nombre =
-                document.getElementById("nombre").value;
+    let nombreMuneco =
+        document.getElementById("nombreMuneco").value;
 
-
-            let nombreMuneco =
-                document.getElementById("nombreMuneco").value;
-
-
-            let tipo =
-                document.getElementById("tipo").value;
+    let tipo =
+        document.getElementById("tipo").value;
 
 
-            if (
-                nombre === "" ||
-                nombreMuneco === ""
-            ) {
+    if (
+        nombre.trim() === "" ||
+        nombreMuneco.trim() === ""
+    ) {
 
-                alert(
-                    "⚠️ Completa todos los datos."
-                );
+        alert("⚠️ Completa todos los datos.");
 
-                return;
+        return;
 
-            }
+    }
 
 
-            document.getElementById("formulario")
-                .style.display = "none";
+    document.getElementById("formulario").style.display = "none";
+
+    document.getElementById("certificado").style.display = "block";
 
 
-            document.getElementById("certificado")
-                .style.display = "block";
+    document.getElementById("resultado").innerHTML =
+
+        "👤 <strong>Adoptante:</strong> " +
+        nombre +
+
+        "<br><br>" +
+
+        "🧸 <strong>Muñeco:</strong> " +
+        tipo +
+
+        "<br><br>" +
+
+        "❤️ <strong>Nombre del muñeco:</strong> " +
+        nombreMuneco;
 
 
-            document.getElementById("resultado")
-                .innerHTML =
+    document.getElementById("certificado").scrollIntoView({
+        behavior: "smooth"
+    });
 
-                "👤 <strong>Adoptante:</strong> " +
-                nombre +
+}
 
-                "<br><br>" +
-
-                "🧸 <strong>Muñeco:</strong> " +
-                tipo +
-
-                "<br><br>" +
-
-                "❤️ <strong>Nombre del muñeco:</strong> " +
-                nombreMuneco;
-
-
-            document.getElementById("certificado")
-                .scrollIntoView({
-                    behavior: "smooth"
-                });
-
-        }
 
 new QRCode(
     document.getElementById("codigoQR"),
@@ -459,8 +779,8 @@ new QRCode(
         height: 200
     }
 );
-    </script>
 
+</script>
 
 </body>
 

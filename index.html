@@ -3,16 +3,16 @@
 <html lang="es">
 
 <head>
+
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Adopta un Muñeco 🧸</title>
 
 <style>
 
-/* =========================
-   ESTILO GENERAL
-========================= */
+/* ===== CONFIGURACIÓN GENERAL ===== */
 
 * {
     box-sizing: border-box;
@@ -27,9 +27,7 @@ body {
 }
 
 
-/* =========================
-   BARRA DE NAVEGACIÓN
-========================= */
+/* ===== MENÚ ===== */
 
 nav {
     position: sticky;
@@ -42,8 +40,7 @@ nav {
 
     padding: 15px 8%;
 
-    background: rgba(36, 59, 128, 0.95);
-    backdrop-filter: blur(10px);
+    background: rgba(36, 59, 128, 0.97);
 
     box-shadow: 0 4px 20px rgba(0,0,0,0.15);
 }
@@ -66,12 +63,10 @@ nav a:hover {
 }
 
 
-/* =========================
-   PORTADA
-========================= */
+/* ===== PORTADA ===== */
 
 header {
-    min-height: 520px;
+    min-height: 530px;
 
     display: flex;
     flex-direction: column;
@@ -128,13 +123,11 @@ header p {
 
 .boton-portada:hover {
     transform: translateY(-5px) scale(1.03);
-    background: #fff;
+    background: white;
 }
 
 
-/* =========================
-   SECCIÓN DE MUÑECOS
-========================= */
+/* ===== SECCIÓN DE MUÑECOS ===== */
 
 .seccion-munecos {
     padding: 80px 20px;
@@ -153,9 +146,7 @@ header p {
 }
 
 
-/* =========================
-   TARJETAS
-========================= */
+/* ===== TARJETAS ===== */
 
 .contenedor {
     display: flex;
@@ -188,7 +179,12 @@ header p {
     box-shadow: 0 20px 45px rgba(36,59,128,0.25);
 }
 
+
+/* ===== IMAGEN ===== */
+
 .imagen-contenedor {
+    position: relative;
+
     background: linear-gradient(135deg, #eef2ff, #fff0f7);
 
     border-radius: 22px;
@@ -209,21 +205,84 @@ header p {
     transform: scale(1.08) rotate(2deg);
 }
 
+
+/* ===== ETIQUETA ===== */
+
+.etiqueta {
+    position: absolute;
+
+    top: 12px;
+    left: 12px;
+
+    background: white;
+
+    color: #243b80;
+
+    padding: 8px 13px;
+
+    border-radius: 30px;
+
+    font-size: 13px;
+
+    font-weight: bold;
+
+    box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+
+    z-index: 2;
+}
+
+
+/* ===== NOMBRE ===== */
+
 .muneco h2 {
     font-size: 30px;
     margin: 20px 0 10px;
 }
 
-.muneco p {
-    font-size: 17px;
-    line-height: 1.6;
-    color: #68718f;
+
+/* ===== CARACTERÍSTICAS ===== */
+
+.caracteristicas {
+    display: flex;
+
+    justify-content: center;
+
+    flex-wrap: wrap;
+
+    gap: 7px;
+
+    margin: 15px 0;
+}
+
+.caracteristicas span {
+    background: #f0f3ff;
+
+    color: #53649c;
+
+    padding: 7px 10px;
+
+    border-radius: 20px;
+
+    font-size: 13px;
+
+    font-weight: bold;
 }
 
 
-/* =========================
-   BOTONES
-========================= */
+/* ===== DESCRIPCIÓN ===== */
+
+.muneco p {
+    font-size: 17px;
+
+    line-height: 1.6;
+
+    color: #68718f;
+
+    min-height: 82px;
+}
+
+
+/* ===== BOTONES ===== */
 
 button {
     background: linear-gradient(135deg, #ffd633, #ffb700);
@@ -249,13 +308,12 @@ button {
 
 button:hover {
     transform: translateY(-3px);
+
     box-shadow: 0 10px 25px rgba(255,190,0,0.4);
 }
 
 
-/* =========================
-   FORMULARIO
-========================= */
+/* ===== FORMULARIO ===== */
 
 #formulario {
     display: none;
@@ -297,8 +355,6 @@ input {
     font-size: 16px;
 
     outline: none;
-
-    transition: 0.3s;
 }
 
 input:focus {
@@ -308,9 +364,7 @@ input:focus {
 }
 
 
-/* =========================
-   CERTIFICADO
-========================= */
+/* ===== CERTIFICADO ===== */
 
 #certificado {
     display: none;
@@ -323,8 +377,7 @@ input:focus {
 
     border-radius: 28px;
 
-    background:
-        linear-gradient(135deg, #fffbea, #fff5c7);
+    background: linear-gradient(135deg, #fffbea, #fff5c7);
 
     border: 3px dashed #f4c400;
 
@@ -335,18 +388,18 @@ input:focus {
 
 #certificado h2 {
     font-size: 32px;
+
     color: #b78600;
 }
 
 #resultado {
     font-size: 18px;
+
     line-height: 1.7;
 }
 
 
-/* =========================
-   QR
-========================= */
+/* ===== QR ===== */
 
 #qr {
     text-align: center;
@@ -362,6 +415,7 @@ input:focus {
 
 #qr p {
     color: #68718f;
+
     font-size: 17px;
 }
 
@@ -369,6 +423,7 @@ input:focus {
     display: flex;
 
     justify-content: center;
+
     align-items: center;
 
     margin: 30px auto;
@@ -385,9 +440,7 @@ input:focus {
 }
 
 
-/* =========================
-   FOOTER
-========================= */
+/* ===== FOOTER ===== */
 
 footer {
     background: #17275c;
@@ -402,9 +455,7 @@ footer {
 }
 
 
-/* =========================
-   ANIMACIÓN
-========================= */
+/* ===== ANIMACIÓN ===== */
 
 @keyframes flotar {
 
@@ -419,9 +470,7 @@ footer {
 }
 
 
-/* =========================
-   CELULARES
-========================= */
+/* ===== CELULARES ===== */
 
 @media (max-width: 700px) {
 
@@ -454,11 +503,13 @@ footer {
     #formulario,
     #certificado {
         width: 90%;
+
         padding: 30px 20px;
     }
 
     input {
         width: 100%;
+
         margin: 8px 0;
     }
 
@@ -470,9 +521,7 @@ footer {
 
 <body>
 
-<!-- =========================
-     MENÚ
-========================= -->
+<!-- ===== MENÚ ===== -->
 
 <nav>
 
@@ -482,17 +531,19 @@ footer {
 </div>
 
 <div>
+
     <a href="#inicio">Inicio</a>
+
     <a href="#munecos">Muñecos</a>
+
     <a href="#qr">QR</a>
+
 </div>
 ```
 
 </nav>
 
-<!-- =========================
-     PORTADA
-========================= -->
+<!-- ===== PORTADA ===== -->
 
 <header id="inicio">
 
@@ -517,9 +568,7 @@ footer {
 
 </header>
 
-<!-- =========================
-     MUÑECOS
-========================= -->
+<!-- ===== MUÑECOS ===== -->
 
 <section id="munecos" class="seccion-munecos">
 
@@ -543,6 +592,10 @@ footer {
 
         <div class="imagen-contenedor">
 
+            <span class="etiqueta">
+                💙 Disponible
+            </span>
+
             <img
                 src="azul.png"
                 alt="Blu, muñeco azul"
@@ -550,7 +603,19 @@ footer {
 
         </div>
 
-        <h2>💙 Blu</h2>
+        <h2>
+            💙 Blu
+        </h2>
+
+        <div class="caracteristicas">
+
+            <span>⭐ Aventurero</span>
+
+            <span>😄 Divertido</span>
+
+            <span>💙 Cariñoso</span>
+
+        </div>
 
         <p>
             Un compañero divertido, aventurero
@@ -558,10 +623,13 @@ footer {
         </p>
 
         <button onclick="mostrarFormulario('Blu 💙')">
+
             ❤️ Adoptar a Blu
+
         </button>
 
     </div>
+
 
 
     <!-- FLAMY -->
@@ -570,6 +638,10 @@ footer {
 
         <div class="imagen-contenedor">
 
+            <span class="etiqueta">
+                🔥 Disponible
+            </span>
+
             <img
                 src="fuego.png"
                 alt="Flamy, muñeco rojo y amarillo"
@@ -577,7 +649,19 @@ footer {
 
         </div>
 
-        <h2>🔥 Flamy</h2>
+        <h2>
+            🔥 Flamy
+        </h2>
+
+        <div class="caracteristicas">
+
+            <span>🔥 Energético</span>
+
+            <span>😄 Alegre</span>
+
+            <span>⭐ Especial</span>
+
+        </div>
 
         <p>
             Alegre, energético y lleno de personalidad.
@@ -585,7 +669,9 @@ footer {
         </p>
 
         <button onclick="mostrarFormulario('Flamy 🔥')">
+
             ❤️ Adoptar a Flamy
+
         </button>
 
     </div>
@@ -596,19 +682,20 @@ footer {
 
 </section>
 
-<!-- =========================
-     FORMULARIO
-========================= -->
+<!-- ===== FORMULARIO ===== -->
 
 <div id="formulario">
 
 ```
-<h2>📝 Formulario de adopción</h2>
+<h2>
+    📝 Formulario de adopción
+</h2>
 
 <p>
     Completa los datos para registrar
     a tu nuevo compañero.
 </p>
+
 
 <input
     type="text"
@@ -616,29 +703,33 @@ footer {
     placeholder="👤 Tu nombre"
 >
 
+
 <input
     type="text"
     id="nombreMuneco"
     placeholder="🧸 Nombre que tendrá tu muñeco"
 >
 
+
 <input
     type="hidden"
     id="tipo"
 >
 
+
 <br><br>
 
+
 <button onclick="adoptar()">
+
     🧸 Confirmar adopción
+
 </button>
 ```
 
 </div>
 
-<!-- =========================
-     CERTIFICADO
-========================= -->
+<!-- ===== CERTIFICADO ===== -->
 
 <div id="certificado">
 
@@ -656,9 +747,7 @@ footer {
 
 </div>
 
-<!-- =========================
-     QR
-========================= -->
+<!-- ===== QR ===== -->
 
 <section id="qr">
 
@@ -681,25 +770,25 @@ footer {
 
 </section>
 
-<!-- =========================
-     PIE DE PÁGINA
-========================= -->
+<!-- ===== FOOTER ===== -->
 
 <footer>
 
 ```
-🐾 <strong>Adopta un compañero.</strong><br>
+🐾 <strong>Adopta un compañero.</strong>
 
-Comparte una aventura. ❤️<br><br>
+<br>
+
+Comparte una aventura. ❤️
+
+<br><br>
 
 © 2026 Adopta un Muñeco
 ```
 
 </footer>
 
-<!-- =========================
-     CÓDIGO QR
-========================= -->
+<!-- ===== QR ===== -->
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
@@ -772,12 +861,15 @@ function adoptar() {
 
 
 new QRCode(
+
     document.getElementById("codigoQR"),
+
     {
         text: window.location.href,
         width: 200,
         height: 200
     }
+
 );
 
 </script>
